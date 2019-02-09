@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.time.LocalDate;
 
 public class Employee {
 
@@ -99,7 +98,7 @@ public class Employee {
     }
 
     public Employee clone() {
-       Employee cloned = new Employee();
+        Employee cloned = new Employee();
 
         cloned.setFirstName(this.getFirstName());
         cloned.setLastName(this.getLastName());
