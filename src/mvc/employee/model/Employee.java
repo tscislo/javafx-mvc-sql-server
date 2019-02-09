@@ -1,116 +1,112 @@
 package mvc.employee.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.time.LocalDate;
 
 public class Employee {
-    private int employeeId;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
-    private LocalDate hireDate;
-    private String jobId;
-    private double salary;
-    private double commissionPCT;
-    private int managerId;
-    private int departmentId;
+
+
+    private IntegerProperty employeeId;
+    private StringProperty firstName;
+    private StringProperty lastName;
+    private StringProperty email;
+    private StringProperty phoneNumber;
+
 
     public Employee() {
+        this.employeeId = new SimpleIntegerProperty();
+        this.firstName = new SimpleStringProperty();
+        this.lastName = new SimpleStringProperty();
+        this.email = new SimpleStringProperty();
+        this.phoneNumber = new SimpleStringProperty();
     }
 
     public Employee(int employeeId) {
-        this.employeeId = employeeId;
+        this();
+        this.employeeId.set(employeeId);
     }
 
     public Integer getEmployeeId() {
+        return employeeId.get();
+    }
+
+    public IntegerProperty employeeIdProperty() {
         return employeeId;
     }
 
     public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
+        this.employeeId.set(employeeId);
     }
 
     public String getFirstName() {
+        return firstName.get();
+    }
+
+    public StringProperty firstNameProperty() {
         return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName.setValue(firstName);
     }
 
+
     public String getLastName() {
+        return lastName.get();
+    }
+
+    public StringProperty lastNameProperty() {
         return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName.setValue(lastName);
     }
 
+
     public String getEmail() {
+        return email.get();
+    }
+
+    public StringProperty emailProperty() {
         return email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email.setValue(email);
     }
 
+
     public String getPhoneNumber() {
+        return phoneNumber.get();
+    }
+
+    public StringProperty phoneNumberProperty() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber.setValue(phoneNumber);
     }
 
-    public LocalDate getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
-    }
-
-    public String getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(String jobId) {
-        this.jobId = jobId;
-    }
-
-    public Double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Double salary) {
-        this.salary = salary;
-    }
-
-    public double getCommissionPCT() {
-        return commissionPCT;
-    }
-
-    public void setCommissionPCT(double commissionPCT) {
-        this.commissionPCT = commissionPCT;
-    }
-
-    public Integer getManagerId() {
-        return managerId;
-    }
-
-    public void setManagerId(Integer managerId) {
-        this.managerId = managerId;
-    }
-
-    public Integer getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
-    }
 
     public String toString() {
-        return this.employeeId + " " + this.firstName + " " + this.lastName;
+        return this.getEmployeeId() + " " + this.getFirstName() + " " + this.getLastName();
+    }
+
+    public Employee clone() {
+       Employee cloned = new Employee();
+
+        cloned.setFirstName(this.getFirstName());
+        cloned.setLastName(this.getLastName());
+        cloned.setEmployeeId(this.getEmployeeId());
+        cloned.setPhoneNumber(this.getPhoneNumber());
+        cloned.setEmail(this.getEmail());
+
+        return cloned;
     }
 }

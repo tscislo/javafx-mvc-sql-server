@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.employee.controller.MainController">
    <children>
@@ -17,5 +19,19 @@
             </Menu>
          </menus>
       </MenuBar>
+      <TableView fx:id="employeeTable" layoutY="29.0" prefHeight="529.0" prefWidth="650.0">
+        <columns>
+          <TableColumn fx:id="employeeIdColumn" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="Imie" />
+            <TableColumn fx:id="lastNameColumn" prefWidth="100.0" text="Nazwisko" />
+            <TableColumn fx:id="phoneNumberColumn" prefWidth="136.0" text="Numer telefonu" />
+            <TableColumn fx:id="emailColumn" prefWidth="95.0" text="Email" />
+        </columns>
+      </TableView>
+      <Label fx:id="employeeIdLabel" layoutX="667.0" layoutY="40.0" prefHeight="16.0" prefWidth="124.0" text="Id" />
+      <Label fx:id="firstNameLabel" layoutX="813.0" layoutY="40.0" prefHeight="16.0" prefWidth="124.0" text="Imie" />
+      <Label fx:id="lastNameLabel" layoutX="667.0" layoutY="70.0" prefHeight="16.0" prefWidth="124.0" text="Nazwisko" />
+      <Label fx:id="phoneNumberLabel" layoutX="813.0" layoutY="70.0" prefHeight="16.0" prefWidth="124.0" text="Numer Telefonu" />
+      <Label fx:id="emailLabel" layoutX="667.0" layoutY="102.0" prefHeight="16.0" prefWidth="124.0" text="Email" />
    </children>
 </AnchorPane>
