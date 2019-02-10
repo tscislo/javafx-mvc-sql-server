@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mvc.employee.Main;
+import mvc.employee.model.Department;
 import mvc.employee.model.Employee;
 
 public class EmployeesDAL {
@@ -122,6 +123,7 @@ public class EmployeesDAL {
 
     private Employee rs2Employee(ResultSet resultSet) {
         Employee emp = null;
+        DepartmentsDAL departmentsDAL = new DepartmentsDAL();
         try {
             int col = 1;
             emp = new Employee(resultSet.getInt(col++));
@@ -129,12 +131,19 @@ public class EmployeesDAL {
             emp.setLastName(resultSet.getNString(col++));
             emp.setEmail(resultSet.getNString(col++));
             emp.setPhoneNumber(resultSet.getNString(col++));
-//            emp.setHireDate(resultSet.getDate(col++).toLocalDate());
-//            emp.setJobId(resultSet.getNString(col++));
-//            emp.setSalary(resultSet.getDouble(col++));
             col++;
-//            emp.setManagerId(resultSet.getInt(col++));
-//            emp.setDepartmentId(resultSet.getInt(col++));
+            col++;
+            col++;
+            col++;
+            col++;
+            emp.setDepartmentId(resultSet.getInt(col++));
+            ObservableList<Department> ol = departmentsDAL.getDepartmentsByDepartmentId(emp.getDepartmentId());
+            if (ol.size() != 0) {
+                emp.setDepartment(ol.get(0));
+            } else {
+                emp.setDepartment(new Department());
+            }
+            col++;
         } catch (SQLException ex) {
             this.ex = ex;
         }

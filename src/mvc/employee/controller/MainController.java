@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import mvc.employee.model.Department;
 import mvc.employee.model.Employee;
 import mvc.employee.model.dal.EmployeesDAL;
 
@@ -39,6 +40,10 @@ public class MainController implements Initializable {
     @FXML
     private
     TableColumn<Employee, String> phoneNumberColumn;
+
+    @FXML
+    private
+    TableColumn<Employee, String> departmentTableColumn;
 
     @FXML
     private Label employeeIdLabel;
@@ -77,6 +82,9 @@ public class MainController implements Initializable {
 
         phoneNumberColumn.setCellValueFactory(cellData ->
                 cellData.getValue().phoneNumberProperty());
+
+        departmentTableColumn.setCellValueFactory(cellData ->
+                cellData.getValue().getDepartment().departmentNameProperty());
 
         firstNameLabel.textProperty().bindBidirectional(this.selectedEmployee.firstNameProperty());
 

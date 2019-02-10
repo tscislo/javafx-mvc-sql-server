@@ -26,6 +26,7 @@
             <TableColumn fx:id="lastNameColumn" prefWidth="100.0" text="Nazwisko" />
             <TableColumn fx:id="phoneNumberColumn" prefWidth="136.0" text="Numer telefonu" />
             <TableColumn fx:id="emailColumn" prefWidth="95.0" text="Email" />
+            <TableColumn fx:id="departmentTableColumn" prefWidth="129.0" text="Department" />
         </columns>
       </TableView>
       <Label fx:id="employeeIdLabel" layoutX="667.0" layoutY="40.0" prefHeight="16.0" prefWidth="124.0" text="Id" />

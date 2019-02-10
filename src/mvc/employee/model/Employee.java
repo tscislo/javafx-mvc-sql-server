@@ -14,10 +14,14 @@ public class Employee {
     private StringProperty lastName;
     private StringProperty email;
     private StringProperty phoneNumber;
+    private IntegerProperty departmentId;
+
+    private Department department;
 
 
     public Employee() {
         this.employeeId = new SimpleIntegerProperty();
+        this.departmentId = new SimpleIntegerProperty();
         this.firstName = new SimpleStringProperty();
         this.lastName = new SimpleStringProperty();
         this.email = new SimpleStringProperty();
@@ -39,6 +43,20 @@ public class Employee {
 
     public void setEmployeeId(Integer employeeId) {
         this.employeeId.set(employeeId);
+    }
+
+
+
+    public Integer getDepartmentId() {
+        return departmentId.get();
+    }
+
+    public IntegerProperty departmentIdProperty() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer employeeId) {
+        this.departmentId.set(employeeId);
     }
 
     public String getFirstName() {
@@ -93,6 +111,8 @@ public class Employee {
     }
 
 
+
+
     public String toString() {
         return this.getEmployeeId() + " " + this.getFirstName() + " " + this.getLastName();
     }
@@ -107,5 +127,13 @@ public class Employee {
         cloned.setEmail(this.getEmail());
 
         return cloned;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
