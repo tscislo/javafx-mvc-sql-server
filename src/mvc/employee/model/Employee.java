@@ -1,9 +1,8 @@
 package mvc.employee.model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+
+import java.time.LocalDate;
 
 
 public class Employee {
@@ -15,7 +14,9 @@ public class Employee {
     private StringProperty email;
     private StringProperty phoneNumber;
     private IntegerProperty departmentId;
+    private ObjectProperty<LocalDate> hireDate;
 
+    public boolean isValid = false;
     private Department department;
 
 
@@ -26,6 +27,7 @@ public class Employee {
         this.lastName = new SimpleStringProperty();
         this.email = new SimpleStringProperty();
         this.phoneNumber = new SimpleStringProperty();
+        hireDate = new SimpleObjectProperty<LocalDate>(LocalDate.now());
     }
 
     public Employee(int employeeId) {
@@ -42,9 +44,9 @@ public class Employee {
     }
 
     public void setEmployeeId(Integer employeeId) {
+        this.isValid = true;
         this.employeeId.set(employeeId);
     }
-
 
 
     public Integer getDepartmentId() {
@@ -111,11 +113,23 @@ public class Employee {
     }
 
 
+    public LocalDate getHireDate() {
+        return hireDate.get();
+    }
+
+    public ObjectProperty<LocalDate> hireDateProperty() {
+        return hireDate;
+    }
+
+    public void setHireDate(LocalDate hireDate) {
+        this.hireDate.setValue(hireDate);
+    }
 
 
     public String toString() {
         return this.getEmployeeId() + " " + this.getFirstName() + " " + this.getLastName();
     }
+
 
     public Employee clone() {
         Employee cloned = new Employee();
@@ -125,6 +139,7 @@ public class Employee {
         cloned.setEmployeeId(this.getEmployeeId());
         cloned.setPhoneNumber(this.getPhoneNumber());
         cloned.setEmail(this.getEmail());
+        cloned.setHireDate(this.getHireDate());
 
         return cloned;
     }

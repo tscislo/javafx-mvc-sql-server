@@ -69,57 +69,25 @@ public class EmployeesDAL {
         }
     }
 
-//    public int updateEmployee(Employee emp) {
-//        try (Statement statement = Main.OraConnInstance.getConnection().createStatement();) {
-//
-//            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd" );
-//            String hireDate = dtf.format(emp.getHireDate());
-//
-//            String query = "UPDATE EMPLOYEES SET "
-//                    + "LAST_NAME     = '" + emp.getLastName() + "', "
-//                    + "FIRST_NAME    = '" + emp.getFirstName() + "', "
-//                    + "EMAIL         = '" + emp.getEmail() + "', "
-//                    + "JOB_ID        = '" + emp.getJobId() + "', "
-//                    + "PHONE_NUMBER  = '" + emp.getPhoneNumber() + "', "
-//                    + "HIRE_DATE     =  to_date('" + hireDate + "', 'yyyyMMdd') , "
-//                    + "DEPARTMENT_ID =  " + emp.getDepartmentId() + " , "
-//                    + "MANAGER_ID    =  " + emp.getManagerId() + " , "
-//                    + "SALARY        =  " + emp.getSalary() + "   "
-//                    + "WHERE "
-//                    + "EMPLOYEE_ID   =  " + emp.getEmployeeId();
-//            int affectedRows = statement.executeUpdate(query);
-//            Main.OraConnInstance.getConnection().commit();
-//            return affectedRows;
-//        } catch (SQLException ex) {
-//            this.ex = ex;
-//            return 0;
-//        }
-//    }
-//
-//    public int insertEmployee(Employee emp) {
-//        try (Statement statement = Main.OraConnInstance.getConnection().createStatement();) {
-//
-//            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd" );
-//            String hireDate = dtf.format(emp.getHireDate());
-//
-//            String query = "INSERT INTO EMPLOYEES VALUES("
-//                    + "(SELECT MAX(EMPLOYEE_ID) + 1 FROM EMPLOYEES) , '"
-//                    + emp.getFirstName() + "','"
-//                    + emp.getLastName() + "','"
-//                    + emp.getEmail() + "','"
-//                    + emp.getPhoneNumber() + "', "
-//                    + "to_date('" + hireDate + "','yy/MM/dd'), '"
-//                    + emp.getJobId() + "', "
-//                    + emp.getSalary() + " , "
-//                    + "null" + " , "
-//                    + emp.getManagerId() + " , "
-//                    + emp.getDepartmentId() + " ) ";
-//            return statement.executeUpdate(query);
-//        } catch (SQLException ex) {
-//            this.ex = ex;
-//            return 0;
-//        }
-//    }
+    public int updateEmployeeHireDate(Employee emp) {
+        try (Statement statement = Main.OraConnInstance.getConnection().createStatement();) {
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd" );
+            String hireDate = dtf.format(emp.getHireDate());
+
+            String query = "UPDATE EMPLOYEES SET "
+                    + "HIRE_DATE     =  to_date('" + hireDate + "', 'yyyyMMdd') "
+                    + "WHERE "
+                    + "EMPLOYEE_ID   =  " + emp.getEmployeeId();
+            int affectedRows = statement.executeUpdate(query);
+            Main.OraConnInstance.getConnection().commit();
+            return affectedRows;
+        } catch (SQLException ex) {
+            this.ex = ex;
+            return 0;
+        }
+    }
+
 
     private Employee rs2Employee(ResultSet resultSet) {
         Employee emp = null;
@@ -131,7 +99,7 @@ public class EmployeesDAL {
             emp.setLastName(resultSet.getNString(col++));
             emp.setEmail(resultSet.getNString(col++));
             emp.setPhoneNumber(resultSet.getNString(col++));
-            col++;
+            emp.setHireDate(resultSet.getDate(col++).toLocalDate());
             col++;
             col++;
             col++;
