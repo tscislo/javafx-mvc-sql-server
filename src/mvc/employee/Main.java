@@ -44,7 +44,7 @@ public class Main extends Application {
     }
 
     private void initializeConnection() {
-        OraConnInstance = new OraConn("jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf", "TEMP01", "temp01" );
+        OraConnInstance = new OraConn("jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf", "", "" );
         try {
             OraConnInstance.open();
         } catch (Exception ex) {
